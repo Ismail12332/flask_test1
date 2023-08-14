@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h1>Select</h1>
+    <!-- Повторяющийся блок -->
+    <div
+      class="btn-group btn-group-lg"
+      role="group"
+      aria-label="Large button group"
+    >
+      <button type="button" class="btn btn-primary toggleAccordion">
+        Food
+      </button>
+    </div>
+    <div class="accordionContainer" style="display: none">
+      <select class="descriptionList">
+        <option value="" disabled selected>Выберите вариант</option>
+        <option value="Описание 1">
+          Описание 1: Это первое описание выбора "Food".
+        </option>
+        <option value="Описание 2">
+          Описание 2: Это второе описание выбора "Food".
+        </option>
+        <option value="Описание 3">
+          Описание 3: Это третье описание выбора "Food".
+        </option>
+        <!-- Добавьте здесь дополнительные описания на выбор -->
+      </select>
+      <br />
+      <input
+        type="text"
+        class="customDescription"
+        placeholder="Или введите свой вариант"
+      />
+      <button type="button" class="confirmButton">Подтвердить</button>
+    </div>
+
+    <!-- Еще один повторяющийся блок -->
+    <div
+      class="btn-group btn-group-lg"
+      role="group"
+      aria-label="Large button group"
+    >
+      <button type="button" class="btn btn-primary toggleAccordion">
+        Drink
+      </button>
+    </div>
+    <div class="accordionContainer" style="display: none">
+      <select class="descriptionList">
+        <option value="" disabled selected>Выберите вариант</option>
+        <option value="Описание 1">
+          Описание 1: Это первое описание выбора "Drink".
+        </option>
+        <option value="Описание 2">
+          Описание 2: Это второе описание выбора "Drink".
+        </option>
+        <option value="Описание 3">
+          Описание 3: Это третье описание выбора "Drink".
+        </option>
+        <!-- Добавьте здесь дополнительные описания на выбор -->
+      </select>
+      <br />
+      <input
+        type="text"
+        class="customDescription"
+        placeholder="Или введите свой вариант"
+      />
+      <button type="button" class="confirmButton">Подтвердить</button>
+    </div>
+    
+    <script>
+        // Получаем все кнопки и контейнеры по классам
+        const toggleButtons = document.querySelectorAll('.toggleAccordion');
+        const accordionContainers = document.querySelectorAll('.accordionContainer');
+      
+        // Добавляем обработчик на каждую кнопку
+        toggleButtons.forEach((button, index) => {
+          button.addEventListener('click', () => {
+            // Скрываем все контейнеры
+            accordionContainers.forEach((container) => {
+              container.style.display = 'none';
+            });
+      
+            // Отображаем контейнер, соответствующий нажатой кнопке
+            accordionContainers[index].style.display = 'block';
+          });
+        });
+      
+        // Обработчик для кнопки "Подтвердить"
+        const confirmButtons = document.querySelectorAll('.confirmButton');
+        confirmButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const container = button.parentNode;
+            const selectedOption = container.querySelector('.descriptionList').value;
+            const customOption = container.querySelector('.customDescription').value;
+      
+            if (selectedOption) {
+              alert('Вы выбрали: ' + selectedOption);
+            } else if (customOption) {
+              alert('Вы ввели свой вариант: ' + customOption);
+            } else {
+              alert('Пожалуйста, выберите вариант или введите свой.');
+            }
+      
+            container.style.display = 'none';
+            container.querySelector('.descriptionList').selectedIndex = 0;
+            container.querySelector('.customDescription').value = '';
+          });
+        });
+      </script>
+      
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
